@@ -27,17 +27,20 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'haml-rails'
+gem 'bootstrap-sass', '3.3.6'
+gem 'bcrypt',         '3.1.11'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'sqlite3', '1.3.11'
+  
   gem 'byebug', platform: :mri
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+ gem 'sqlite3', '1.3.11'  
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

@@ -1,0 +1,7 @@
+%h2 Your Cart
+%ul
+  -for item in @cart.line_items
+    %li
+    =item.product.title
+    %p
+    = number_to_currency(item.product.price)
