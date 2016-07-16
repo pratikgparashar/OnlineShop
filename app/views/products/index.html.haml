@@ -1,0 +1,10 @@
+%h1 Products Page
+-@product.each do |product|
+  %li 
+    =product.title 
+    =product.description 
+    =product.image_url 
+    =product.price 
+    = link_to 'Show', product 
+    = link_to 'Edit', edit_product_path(product) 
+    = link_to 'Destroy', product,:confirm => 'Are you sure?',:method => :delete

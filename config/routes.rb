@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+resources :products
+
   get 'products/index'
 
   get 'products/edit'
 
-  get 'products/show'
+  get 'products/show' 
 
   get 'products/new'
 
