@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	def index
-		
+		@cart =current_cart
 	end
 
 	def create

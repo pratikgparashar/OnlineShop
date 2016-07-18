@@ -17,11 +17,15 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
     <div id="columns" >
+    <%if logged_in? %>
       <div id="side" >
         <div id="cart" >
+        <%if @cart%>
             <%= render @cart %>
+        <%end%>    
           </div>
-        </div>
+      </div>
+    <%end%>  
       <div id ="main">  
         <%= yield %>
       </div>

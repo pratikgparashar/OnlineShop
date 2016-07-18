@@ -8,12 +8,13 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # Log the user in and redirect to the user's show page.
       log_in user
+
       if params[:session][:remember_me] == '1' 
   			remember(user) 
   		else	
   			forget1(user)
   		end	
-      redirect_to user
+      redirect_to root_path
     else
       # Create an error message.
       flash.now[:danger] = 'Invalid email/password combination'

@@ -1,7 +1,9 @@
 class StoreController < ApplicationController
   def index
   	@products =Product.all
-  	@cart = current_cart
+  	if logged_in?
+  		@cart = current_cart
+  	end	
   end
 end
 

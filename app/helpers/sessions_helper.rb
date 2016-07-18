@@ -2,7 +2,8 @@ module SessionsHelper
 	def log_in(user)
 
     session[:user_id] = user.id
-    current_cart
+    @cart=current_cart
+
 
   end
    # Returns the current logged-in user (if any).
