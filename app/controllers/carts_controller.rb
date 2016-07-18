@@ -1,24 +1,24 @@
 class CartsController < ApplicationController
 	before_action :set_cart, only: [:show, :edit, :update, :destroy]
-	before_action = :set_user
+	# before_action = :set_user
 
 	
 	def new
     @cart = Cart.new
-  	end
+  end
 
   def create
-    @cart = @user.carts.new
-  #  @cart.user_id = session[:user_id]
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+  #   @cart = @user.carts.new
+  # #  @cart.user_id = session[:user_id]
+  #   respond_to do |format|
+  #     if @cart.save
+  #       format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
      
-      else
-        format.html { render :new }
+  #     else
+  #       format.html { render :new }
    
-      end
-    end
+  #     end
+  #   end
   end
 
   def update
@@ -40,7 +40,7 @@ class CartsController < ApplicationController
     end
   end
   def show
- @cart = Cart.find(params[:id])
+    @cart = Cart.find(params[:id])
   end
 
   private
@@ -50,7 +50,7 @@ class CartsController < ApplicationController
       @cart = Cart.find(params[:id])
     end
 
-    def set_user
-    	@user=User.find_by_id(session[:user_id]) 
-    end	
+    # def set_user
+    # 	@user=User.find_by_id(session[:user_id]) 
+    # end	
 end
