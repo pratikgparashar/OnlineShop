@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-	before_action :set_cart, only: [:show, :edit, :update, :destroy]
+	#before_action :set_cart, only: [:show, :edit, :update, :destroy]
 	# before_action = :set_user
 
 	
@@ -40,7 +40,28 @@ class CartsController < ApplicationController
     end
   end
   def show
+    begin
+      @cart = Cart.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      flash[:success] = "Invalid cart"
+      redirect_to store_index_path
+    else
+        respond_to do |format|
+        format.html # show.html.erb
+        format.xml { render :xml => @cart }
+        end
+    end
+  end
+
+  def destroy
     @cart = Cart.find(params[:id])
+    @cart.destroy
+    session[:cart_id] = nil
+    respond_to do |format|
+      format.html { redirect_to(store_index_url,
+      :notice => 'Your cart is currently empty') }
+    end
   end
 
   private

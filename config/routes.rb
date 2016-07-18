@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   get 'sessions/new'
 
   get 'store/index'
@@ -6,17 +7,8 @@ Rails.application.routes.draw do
 
 resources :products
 resources :users
-resources :carts, only: [:show, :index]
-
-  get 'products/index'
-
-  get 'products/edit'
-
-  get 'products/show' 
-
-  get 'products/new'
-
-  get 'products/_form'
+resources :carts
+resources :line_items, :only => [:create,:destroy] 
 
   get  'help' => 'store#help'
   get  'about'=> 'store#about'
@@ -26,9 +18,7 @@ resources :carts, only: [:show, :index]
   get 'login'=> 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-
-
-  post 'line_items'=>'line_items#create'
+ 
   # get 'carts'=>'carts#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

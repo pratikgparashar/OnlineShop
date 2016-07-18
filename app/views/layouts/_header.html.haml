@@ -8,8 +8,10 @@
         %li
           = link_to "Help",help_path
         -if logged_in?
-          %li=link_to "Cart",cart_path(session[:cart_id])       
-        
+          -if session[:cart_id].present?
+            %li=link_to "Cart",cart_path(session[:cart_id])       
+          -else
+            %li=link_to "Cart",store_index_path,:notice => 'Your cart is currently empty'
           %li.dropdown
             %a.dropdown_toggle{:href=>"#","data-toggle" =>"dropdown"} 
               Account 

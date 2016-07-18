@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  before_action :set_line_item, only: [:destroy]
 	def new
     @line_item = LineItem.new
   end
@@ -7,18 +8,17 @@ class LineItemsController < ApplicationController
   def create
   	@cart = current_cart
   	product = Product.find(params[:product_id])	
-    @line_item = @cart.line_items.build(:product => product)	
-
-    #respond_to do |format|
+    @line_item = @cart.add_product(product.id)
+    respond_to do |format|
       if @line_item.save
-        #format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
-      	flash.now[:success]="Item has been added to cart"
-      	redirect_to root_path
+        # flash[:success] = "Product added to cart"
+        format.html { redirect_to root_path}
+      	format.js { @current_item = @line_item }
       else
       #  format.html { render :new }
       render html: "Not Added"
       end
-    
+    end
   end
 
   def update
@@ -35,8 +35,8 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
-   
+      format.html { redirect_to cart_path(current_cart), success: 'Line item was successfully removed' }
+      format.js
     end
   end
 

@@ -194,3 +194,38 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+#cart, #cart table {
+font-size: smaller;
+color:
+black;
+}
+#cart table {
+border-top:
+1px dotted #595;
+border-bottom: 1px dotted #595;
+margin-bottom: 10px;
+}
+#main{
+margin-right: 13em;
+padding-top: 4ex;
+padding-left: 2em;
+background: white;
+}
+
+#side {
+float: right;
+padding-top: 1em;
+padding-left: 1em;
+padding-bottom: 1em;
+width: 12em;
+
+}
+
+.entry{
+float: left;
+padding-top: 1em;
+padding-left: 1em;
+padding-bottom: 1em;
+width: 12em;
+}

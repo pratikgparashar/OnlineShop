@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   private
     def current_cart
       cart = current_user.carts.first_or_create if current_user 
+      
       session[:cart_id] = cart.id
       cart
     end
