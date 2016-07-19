@@ -5,8 +5,12 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     #@orders = Order.all
+    if current_user.id == 1
       @orders = Order.paginate :page=>params[:page],
   :per_page => 10
+   else
+    redirect_to root_path
+  end
   end
 
   # GET /orders/1
@@ -40,7 +44,7 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         flash[:success]="'Thank you for your order.'"
         assign_new_cart
-        #NotifierMailer.order_received(@order).deliver
+        NotifierMailer.order_received(@order).deliver
         format.html { redirect_to(root_path) }
    
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -79,7 +83,7 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.find_by(user_id: current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

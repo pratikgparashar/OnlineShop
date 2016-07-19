@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user, :only => [:create,:show,:edit]
+  before_action :correct_user, :only => [:show,:edit]
 
   
 	def index
