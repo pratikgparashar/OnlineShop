@@ -4,16 +4,23 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    #@orders = Order.all
+      @orders = Order.paginate :page=>params[:page],
+  :per_page => 10
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = current_user.orders
   end
 
   # GET /orders/new
   def new
+    if current_cart.line_items.empty?
+    redirect_to store_url, :notice => "Your cart is empty"
+    return
+  end
     @order = Order.new
   end
 
@@ -24,10 +31,18 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
-
-    respond_to do |format|
+    @order = current_user.orders.new(order_params)
+    @order.add_line_items_from_cart(current_cart)
+     respond_to do |format|
       if @order.save
+
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        flash[:success]="'Thank you for your order.'"
+        assign_new_cart
+        #NotifierMailer.order_received(@order).deliver
+        format.html { redirect_to(root_path) }
+   
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

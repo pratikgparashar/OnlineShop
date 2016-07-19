@@ -1,6 +1,6 @@
 %header{:class=>"navbar navbar-fixed-top navbar-inverse"}
   .container 
-    =link_to "sample app", "#", id: "logo" 
+    =link_to "The Mobile Store", root_path, id: "logo" 
     %nav
       %ul{:class =>"nav navbar-nav navbar-right"}
         %li
@@ -19,6 +19,7 @@
             %ul.dropdown-menu
               %li= link_to "Profile", user_path(session[:user_id])
               %li= link_to "Settings",edit_user_path(session[:user_id])
+              %li=link_to "Orders", order_path(session[:user_id])
               %li.divider
               %li
                 = link_to "Log out", logout_path,{controller: "session", method: "delete"}

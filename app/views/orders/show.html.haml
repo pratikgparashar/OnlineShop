@@ -1,18 +1,29 @@
 %p#notice= notice
+%table
+  %tr
+    %th 
+      %b Name:
+    %th
+      %b Address:
+    %th
+      %b Email:
+    %th
+      %b Pay_type
+    %th
 
-%p
-  %b Name:
-  = @order.name
-%p
-  %b Address:
-  = @order.address
-%p
-  %b Email:
-  = @order.email
-%p
-  %b Pay type:
-  = @order.pay_type
+  -@order.each do |order|
+    %tr
+      %td
+        = order.name
+      %td
+         
+        = order.address
+      %td
+         
+        = order.email
+      %td
+         
+        = order.pay_type
+      %td  
+        = link_to 'Edit', edit_order_path(order)
 
-= link_to 'Edit', edit_order_path(@order)
-\|
-= link_to 'Back', orders_path

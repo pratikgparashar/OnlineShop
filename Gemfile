@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'bootstrap-sass', '3.3.6'
 gem 'bcrypt',         '3.1.11'
+gem 'will_paginate', '>= 3.0.pre'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

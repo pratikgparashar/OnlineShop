@@ -1,5 +1,5 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: [:destroy]
+  before_action :set_line_item
 	def new
     @line_item = LineItem.new
   end
@@ -15,8 +15,11 @@ class LineItemsController < ApplicationController
         format.html { redirect_to root_path}
       	format.js { @current_item = @line_item }
       else
-      #  format.html { render :new }
-      render html: "Not Added"
+
+        flash[:notice]="Not added"
+
+       format.html { redirect_to root_path }
+      #render html: "Not Added"
       end
     end
   end
@@ -43,7 +46,7 @@ class LineItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_line_item
-      @line_item = LineItem.find(params[:id])
+      @line_item = LineItem.find_by(cart_id: current_cart)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

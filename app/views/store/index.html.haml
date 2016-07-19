@@ -1,7 +1,7 @@
-%h1 Catalog
+%h1 Mobile Store
 - @products.each do |product|
   .entry
-    = image_tag(product.image_url)
+    = image_tag(product.image_url, size: "160x160")
     %h3= product.title
    
     .price_line
