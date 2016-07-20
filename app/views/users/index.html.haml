@@ -5,5 +5,11 @@
   - @users.each do |user|
     %li
       = gravatar_for user
-      = link_to user.name, user
+      %br 
+      %strong Name : 
+      = user.name
+      %br 
+      %strong Email : 
+      = user.email
+      
 =will_paginate       

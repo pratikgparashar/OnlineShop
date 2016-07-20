@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
-  
+    scope '(:locale)' do
+      root "store#index"
+  end
  
-    root "store#index"
+    
     resources :orders
     resources :users
     resources :carts
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
   get 'login'=> 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
  
   # get 'carts'=>'carts#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,26 +1,28 @@
-%h1 Listing orders
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Address
-      %th Email
-      %th Pay type
-      %th
-      %th
-      %th
-
-  %tbody
-    - @orders.each do |order|
+%h1 All Orders
+.all_index
+  %table
+    %thead
       %tr
-        %td= order.name
-        %td= order.address
-        %td= order.email
-        %td= order.pay_type
-        %td= link_to 'Show', order
-        %td= link_to 'Edit', edit_order_path(order)
-        %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Name
+        %th Address
+        %th Email
+        %th Pay type
+        %th Created At
+        %th
+        %th
+        %th
+
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.name
+          %td= order.address
+          %td= order.email
+          %td= order.pay_type
+          %td= order.created_at
+          %td= link_to 'Show', order
+          %td= link_to 'Edit', edit_order_path(order)
+          %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

@@ -229,3 +229,17 @@ padding-left: 1em;
 padding-bottom: 1em;
 width: 12em;
 }
+
+.all_index{
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+table, th, td {
+    text-align: center;
+    border: 1px solid black;
+  }
+
+  
+}

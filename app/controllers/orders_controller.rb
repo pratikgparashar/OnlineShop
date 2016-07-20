@@ -5,12 +5,17 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     #@orders = Order.all
-    if current_user.id == 1
-      @orders = Order.paginate :page=>params[:page],
-  :per_page => 10
-   else
-    redirect_to root_path
-  end
+    if !current_user.nil?
+      if current_user.id == 1 
+        @orders = Order.paginate :page=>params[:page],
+        :per_page => 10
+      else
+        redirect_to root_path
+      end
+    else 
+      redirect_to root_path
+    end  
+
   end
 
   # GET /orders/1
@@ -22,9 +27,9 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     if current_cart.line_items.empty?
-    redirect_to store_url, :notice => "Your cart is empty"
-    return
-  end
+      redirect_to store_url, :notice => "Your cart is empty"
+      return
+    end
     @order = Order.new
   end
 
