@@ -11,6 +11,8 @@
       %th
         %b Pay_type
       %th
+        %b Items
+      %th  
 
     -@order.each do |order|
       %tr
@@ -25,6 +27,10 @@
         %td
            
           = order.pay_type
+        %td
+          -order.line_items.each do |item|
+            %li
+              =item.product.title+" x " + item.quantity.to_s
         %td  
           = link_to 'Edit', edit_order_path(order)
 

@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
   
     
-      root "store#index"
-  
- 
-    
-    resources :orders
-    resources :users
-    resources :carts
-    resources :line_items, :only => [:create,:destroy] 
-    resources :products do
-      get :who_bought, :on => :member
-    end
-  
+  root "store#index"
+  resources :orders
+  resources :users
+  resources :carts
+  resources :line_items, :only => [:create,:destroy] 
+  resources :products do
+    get :who_bought, :on => :member
+  end
   get  'help' => 'store#help'
   get  'about'=> 'store#about'
   get  'contact' => 'store#contact'

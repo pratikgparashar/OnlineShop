@@ -7,7 +7,7 @@
           = link_to t('.home'),root_path
         -if logged_in?
           
-          -if current_user.id > 1
+          -if !current_user.admin 
             -if session[:cart_id].present?
               %li=link_to "Cart",cart_path(session[:cart_id])       
             -else
@@ -32,5 +32,5 @@
                 = link_to "Log out", logout_path,{controller: "session", method: "delete"}
 
         -else
-          %li= link_to "Log in", login_path
+          %li= link_to "Log in/Sign Up", login_path
           

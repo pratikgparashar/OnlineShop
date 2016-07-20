@@ -1,7 +1,12 @@
 %h1=@product.title
-%li 
-  =@product.title 
-  =@product.description 
-  =image_tag(product.image_url, size: "160x160")
-  =@product.price
-  =@product.id 
+   
+=image_tag(@product.image_url, size: "160x160")
+%br
+%strong Description: 
+=@product.description
+%br
+%strong Price: 
+=@product.price
+%br
+%strong Product id:
+=@product.id 

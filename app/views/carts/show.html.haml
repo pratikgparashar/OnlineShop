@@ -6,7 +6,7 @@
       %td=item.quantity.to_s  + "Units"
       %td=item.product.title
       %td=number_to_currency(item.product.price)
-      %td=item.total_price  
+      %td=number_to_currency(item.total_price)  
       %td=link_to "Remove",item,:method => :delete
 
 

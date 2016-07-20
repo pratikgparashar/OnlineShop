@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   
 	def index
-		if current_user.id == 1
+		if current_user.admin
 		@cart =current_cart
 		@users = User.paginate :page=>params[:page],
   		:per_page => 10

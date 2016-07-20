@@ -21,7 +21,7 @@
       <div id="side" >
         <div id="cart" >
         <%if @cart%>
-            <%if !current_user.id == 1%>
+            <%if !current_user.admin %>
             <%= render @cart %>
             <%end%>   
         <%end%>    

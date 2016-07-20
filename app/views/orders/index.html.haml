@@ -8,6 +8,8 @@
         %th Email
         %th Pay type
         %th Created At
+        %th Items
+        %th Cost
         %th
         %th
         %th
@@ -20,6 +22,11 @@
           %td= order.email
           %td= order.pay_type
           %td= order.created_at
+          %td
+            -order.line_items.each do |item|
+              %li
+                =item.product.title + " x " + item.quantity.to_s
+          %td=number_to_currency(order.line_items.to_a.sum{|item| item.total_price})
           %td= link_to 'Show', order
           %td= link_to 'Edit', edit_order_path(order)
           %td= link_to 'Destroy', order, :method => :delete, :data => { :confirm => 'Are you sure?' }

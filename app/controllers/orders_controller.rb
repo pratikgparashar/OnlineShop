@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_order, only: [:show, :edit, :update]
 
   # GET /orders
   # GET /orders.json
   def index
     #@orders = Order.all
     if !current_user.nil?
-      if current_user.id == 1 
+      if current_user.admin 
         @orders = Order.paginate :page=>params[:page],
         :per_page => 10
       else
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     if current_cart.line_items.empty?
-      redirect_to store_url, :notice => "Your cart is empty"
+      redirect_to root_path, :notice => "Your cart is empty"
       return
     end
     @order = Order.new
@@ -49,7 +49,7 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         flash[:success]="'Thank you for your order.'"
         assign_new_cart
-        NotifierMailer.order_received(@order).deliver
+        #NotifierMailer.order_received(@order).deliver
         format.html { redirect_to(root_path) }
    
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -78,6 +78,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
+    @order = Order.find_by_id(params[:id])
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
@@ -93,6 +94,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :email, :pay_type)
+      params.require(:order).permit(:id,:name, :address, :email, :pay_type)
     end
 end

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    if current_user.id==1
+    if current_user.admin
       @product = Product.all
     else
       redirect_to root_path
