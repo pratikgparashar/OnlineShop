@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-    scope '(:locale)' do
+    
       root "store#index"
-  end
+  
  
     
     resources :orders
